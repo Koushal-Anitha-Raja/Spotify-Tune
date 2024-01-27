@@ -1,10 +1,48 @@
 import { Error, Loader, SongCard } from "../components";
 import { genres } from "../assets/constants";
-
 import { useGetTopChartsQuery } from "../redux/services/shazamCore";
+import React, { useEffect } from "react";
+
 const Discover = () => {
-  const { data, isFetching, error } = useGetTopChartsQuery();
+  const { data, isFetching, isError, error } = useGetTopChartsQuery();
+
+  // const fetchData = async () => {
+  //   const url = "https://shazam-core.p.rapidapi.com/v1/charts/world";
+  //   const options = {
+  //     method: "GET",
+  //     headers: {
+  //       "X-RapidAPI-Key": "fabf70dad5mshbc11a9b5a369599p18acdfjsne631d0041f2e",
+  //       "X-RapidAPI-Host": "shazam-core.p.rapidapi.com",
+  //     },
+  //   };
+
+  //   try {
+  //     const response = await fetch(url, options);
+  //     const result = await response.text();
+  //     console.log(result);
+  //   } catch (error) {
+  //     console.error(error);
+  //   }
+  // };
+
+  // useEffect(() => {
+  //   fetchData();
+  // }, []);
+
+  // if (isFetching) return <Loader title="Loading songs" />;
+
+  // if (error) return <Error />;
+
   const genreTitle = "Pop";
+
+  if (isFetching) {
+    return <div>Loading...</div>;
+  }
+
+  console.log(data);
+  console.log(isFetching);
+  console.log(isError);
+  console.log(error);
 
   return (
     <div className="flex flex-col w-full justify-between items-center mt-4 mb-10">
