@@ -3,8 +3,14 @@ import { genres } from "../assets/constants";
 import { useGetTopChartsQuery } from "../redux/services/shazamCore";
 import React, { useEffect } from "react";
 
+import { useDispatch, useSelector } from "react-redux";
+
 const Discover = () => {
+  const dispatch = useDispatch();
+  const {} = useSelector((state) => state.player);
   const { data, isFetching, error } = useGetTopChartsQuery();
+
+  //using normal fetch request call
   // console.log(data);
   // console.log(isFetching);
   // console.log(error);
@@ -40,14 +46,14 @@ const Discover = () => {
 
   return (
     <div className="flex flex-col w-full justify-between items-center mt-4 mb-10">
-      <h2 className="font-bold text-3xl text-white mb-2">
+      <h2 className="font-bold text-3xl text-white mb-2 ">
         Discover {genreTitle}
       </h2>
 
       <select
         onChange={() => {}}
         value=""
-        className="bg-black text-grey-300 p-3 text-sm rounded-lg outline-none sm:mt-0 mt-5"
+        className="bg-black text-grey-300 p-3 text-sm rounded-lg outline-none sm:mt-0 mt-5 mb-5"
       >
         {genres.map((genre) => (
           <option key={genre.value} value={genre.value}>
