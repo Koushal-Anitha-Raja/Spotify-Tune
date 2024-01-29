@@ -4,7 +4,10 @@ import { useGetTopChartsQuery } from "../redux/services/shazamCore";
 import React, { useEffect } from "react";
 
 const Discover = () => {
-  const { data, isFetching, isError, error } = useGetTopChartsQuery();
+  const { data, isFetching, error } = useGetTopChartsQuery();
+  // console.log(data);
+  // console.log(isFetching);
+  // console.log(error);
 
   // const fetchData = async () => {
   //   const url = "https://shazam-core.p.rapidapi.com/v1/charts/world";
@@ -29,20 +32,11 @@ const Discover = () => {
   //   fetchData();
   // }, []);
 
-  // if (isFetching) return <Loader title="Loading songs" />;
+  if (isFetching) return <Loader title="Loading songs" />;
 
-  // if (error) return <Error />;
+  if (error) return <Error />;
 
   const genreTitle = "Pop";
-
-  if (isFetching) {
-    return <div>Loading...</div>;
-  }
-
-  console.log(data);
-  console.log(isFetching);
-  console.log(isError);
-  console.log(error);
 
   return (
     <div className="flex flex-col w-full justify-between items-center mt-4 mb-10">
@@ -62,7 +56,7 @@ const Discover = () => {
         ))}
       </select>
       <div className="flex flex-wrap sm:justify-start justify-center gap-8">
-        {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((song, i) => (
+        {data?.map((song, i) => (
           <SongCard key={song.key} song={song} i={i}></SongCard>
         ))}
       </div>
