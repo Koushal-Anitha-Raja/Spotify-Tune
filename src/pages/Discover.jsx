@@ -50,11 +50,7 @@ const Discover = () => {
         <h2 className="font-bold text-3xl text-white text-left">
           Discover {genreTitle}
         </h2>
-        <H1>
-          <h1 className="font-bold text-3xl text-white text-left">
-            Discover {genreTitle}
-          </h1>
-        </H1>
+
         <select
           onChange={(e) => dispatch(selectGenreListId(e.target.value))}
           value=""
