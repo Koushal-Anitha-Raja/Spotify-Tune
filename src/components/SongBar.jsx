@@ -45,6 +45,7 @@ const SongBar = ({
         </p>
       </div>
     </div>
+
     {!artistId ? (
       <PlayPause
         isPlaying={isPlaying}
