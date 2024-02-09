@@ -16,9 +16,16 @@ export const shazamCoreApi = createApi({
     getTopCharts: builder.query({ query: () => "/charts/world" }),
     getSongDetails: builder.query({
       query: ({ songid }) => `/tracks/details?track_id=${songid}`,
+      getSongRelated: builder.query({
+        query: ({ songid }) => `v1/tracks/related?track_id=${songid}`,
+      }),
     }),
   }),
 });
 
 //redux allows to use the getTopCharts function to export as a hook
-export const { useGetTopChartsQuery, useGetSongDetailsQuery } = shazamCoreApi;
+export const {
+  useGetTopChartsQuery,
+  useGetSongDetailsQuery,
+  useGetSongRelatedQuery,
+} = shazamCoreApi;
