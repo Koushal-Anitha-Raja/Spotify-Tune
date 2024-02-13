@@ -1,14 +1,18 @@
 import { Error, Loader, SongCard } from "../components";
 import { genres } from "../assets/constants";
-import { useGetTopChartsQuery } from "../redux/services/shazamCore";
+import { useGetSongsByGenreQuery } from "../redux/services/shazamCore";
 import React, { useEffect } from "react";
-
+import { selectGenreListId } from "../redux/features/playerSlice";
 import { useDispatch, useSelector } from "react-redux";
 
 const Discover = () => {
   const dispatch = useDispatch();
-  const { activeSong, isPlaying } = useSelector((state) => state.player);
-  const { data, isFetching, error } = useGetTopChartsQuery();
+  const { activeSong, isPlaying, genreListId } = useSelector(
+    (state) => state.player
+  );
+  const { data, isFetching, error } = useGetSongsByGenreQuery(
+    genreListId || "POP"
+  );
 
   //using normal fetch request call
   // console.log(data);
@@ -42,7 +46,7 @@ const Discover = () => {
 
   if (error) return <Error />;
 
-  const genreTitle = "Pop";
+  const genreTitle = genres.find(({ value }) => value === genreListId)?.title;
 
   return (
     <div className="flex flex-col">
@@ -53,7 +57,7 @@ const Discover = () => {
 
         <select
           onChange={(e) => dispatch(selectGenreListId(e.target.value))}
-          value=""
+          value={genreListId || "pop"}
           className="bg-black text-gray-300 p-3 text-sm rounded-lg outline-none sm:mt-0 mt-5"
         >
           {genres.map((genre) => (
