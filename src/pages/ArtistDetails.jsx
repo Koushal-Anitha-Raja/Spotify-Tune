@@ -12,10 +12,6 @@ const ArtistDetails = () => {
     isFetching: isFetchingArtistsDetails,
     error,
   } = useGetArtistDetailsQuery({ artistId });
-  console.log(artistId);
-  console.log(artistData);
-  console.log("Is Fetching Artists Details:", isFetchingArtistsDetails);
-  console.log("Error:", error);
 
   if (isFetchingArtistsDetails)
     return <Loader title="Searching artist details" />;
@@ -23,7 +19,7 @@ const ArtistDetails = () => {
   if (error) return <Error />;
   return (
     <div className="flex flex-col">
-      <DetailsHeader artistId={artistId} artistData={artistData} />
+      <DetailsHeader artistId={artistId} artistData={artistData?.data[0]} />
       <div className="mb-10">
         <h2 className="text-white text-3xl font-bold ">Artist Details:</h2>
       </div>
