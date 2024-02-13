@@ -1,7 +1,7 @@
 import React from "react";
 
 const Track = ({ isPlaying, isActive, activeSong }) => (
-  <div className="flex-1 flex items-center justify-start">
+  <div className="flex-1 flex items-center justify-start flex-col sm:flex-row sm:items-start sm:justify-center">
     <div
       className={`${
         isPlaying && isActive ? "animate-[spin_2s_linear_infinite]" : ""
@@ -13,7 +13,7 @@ const Track = ({ isPlaying, isActive, activeSong }) => (
         className="rounded-full"
       />
     </div>
-    <div className="w-[50%]">
+    <div className="flex flex-col sm:flex-row sm:flex-shrink-0 sm:max-w-[50%]">
       <p className="truncate text-white font-bold text-lg">
         {activeSong?.title ? activeSong?.title : "No active Song"}
       </p>

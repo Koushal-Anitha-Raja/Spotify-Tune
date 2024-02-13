@@ -13,7 +13,7 @@ import {
 } from "./pages";
 
 const App = () => {
-  const { activeSong, currentSongs } = useSelector((state) => state.player);
+  const { activeSong } = useSelector((state) => state.player);
 
   return (
     <div className="relative flex">
